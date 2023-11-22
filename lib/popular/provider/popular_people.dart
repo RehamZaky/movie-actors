@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment_task/popular/data/models/popular.dart';
-import 'package:flutter_assessment_task/shared/data/models/department.dart';
+import 'package:flutter_assessment_task/popular/data/repos/popular_repo.dart';
+import 'package:flutter_assessment_task/shared/di.dart';
 
-class PopularPeople extends ChangeNotifier {
-  List<Popular> popular = [];
+class PopularPeopleProvider extends ChangeNotifier {
+  List<Popular> popularPeople = [];
+  int pageNo = 1;
 
-  List<Popular> getPopularPeople() {
+  Future<List<Popular>> getPopularPeople() async {
+    final popularRepo = di.get<PopularRepo>();
 
-    popular = List.generate(
-      300,
-      (index) => Popular(
-        adult: false,
-        gender: 1,
-        id: 4068148,
-        knownForDepartment: KnownForDepartment.ACTING,
-        name: "Madeleine Yuna Voyles",
-        originalName: "Madeleine Yuna Voyles",
-        popularity: 249.806 + index,
-        profilePath: "/mLKvNuCJSgyK0WdLd4ogO81sOO1.jpg",
-        knownFor: [],
-      ),
-    );
+    var popular = await popularRepo.getPopularPeople(page: pageNo);
+    if (popular is List<Popular>) {
+      popularPeople = popular;
+    } else {
+      // TODO: show dialog or snackBar
+    }
 
-    return popular;
-    //  notifyListeners();
+    // notifyListeners();
+    return popularPeople;
+  }
+
+  void updatePageNo() async {
+    pageNo++;
+    notifyListeners();
+    await Future.delayed(const Duration(seconds: 1));
+    await getPopularPeople();
   }
 }

@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assessment_task/shared/style/global_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({
-    super.key,
-    required this.title,
-  });
+  const CustomAppBar({super.key, required this.title, this.actions});
   final String title;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: GlobalColors.primaryColor,
       leading: const BackButton(color: GlobalColors.backgroundColor),
+      actions: actions ?? [],
       title: Text(
         title,
         style: Theme.of(context)

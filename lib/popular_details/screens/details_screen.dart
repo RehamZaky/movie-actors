@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment_task/popular_details/widgets/popular_image.dart';
 import 'package:flutter_assessment_task/shared/style/global_colors.dart';
 import 'package:flutter_assessment_task/shared/widgets/custom_appbar.dart';
 
@@ -39,10 +40,7 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                 scrollDirection: Axis.vertical,
                 itemCount: 50,
                 itemBuilder: ((context, index) {
-                  // TODO: Replace with popular People Images
-                  return const FlutterLogo(
-                    size: 30,
-                  );
+                  return PopularImageWidget(index: index);
                 }),
               ),
             ),
@@ -52,3 +50,4 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     );
   }
 }
+

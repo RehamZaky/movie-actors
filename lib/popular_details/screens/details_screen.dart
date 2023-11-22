@@ -1,16 +1,54 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment_task/shared/style/global_colors.dart';
+import 'package:flutter_assessment_task/shared/widgets/custom_appbar.dart';
 
-class DetailsScreen extends StatefulWidget {
-  const DetailsScreen({super.key});
+class PersonDetailsScreen extends StatefulWidget {
+  const PersonDetailsScreen({super.key});
 
   @override
-  State<DetailsScreen> createState() => _DetailsScreenState();
+  State<PersonDetailsScreen> createState() => _PersonDetailsScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: const CustomAppBar(title: ''),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'hello',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: GlobalColors.backgroundColor),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.6,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3),
+                scrollDirection: Axis.vertical,
+                itemCount: 50,
+                itemBuilder: ((context, index) {
+                  // TODO: Replace with popular People Images
+                  return const FlutterLogo(
+                    size: 30,
+                  );
+                }),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

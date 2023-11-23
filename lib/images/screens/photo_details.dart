@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assessment_task/images/helper/download_image.dart';
+import 'package:flutter_assessment_task/images/helper/download_helper.dart';
 import 'package:flutter_assessment_task/images/provider/images_provider.dart';
 import 'package:flutter_assessment_task/popular_details/provider/person_details.dart';
 import 'package:flutter_assessment_task/shared/style/constants.dart';
@@ -23,7 +23,7 @@ class PhotoDetailsScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              openFile(url);
+              DownloadHelper.openFile(url);
             },
             icon: Lottie.asset('assets/lottie/download.json'),
           ),

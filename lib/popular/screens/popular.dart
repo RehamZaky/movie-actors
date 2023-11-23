@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment_task/main.dart';
 import 'package:flutter_assessment_task/popular/data/models/popular.dart';
-import 'package:flutter_assessment_task/popular/provider/popular_people.dart';
+import 'package:flutter_assessment_task/popular/provider/popular_provider.dart';
 import 'package:flutter_assessment_task/popular/widgets/movie_popular.dart';
 import 'package:flutter_assessment_task/shared/data/models/department.dart';
 import 'package:flutter_assessment_task/shared/style/global_colors.dart';
@@ -25,7 +26,7 @@ class _MoviePopularScreenState extends State<MoviePopularScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Movie popular'),
+      appBar: const CustomAppBar(title: 'Movie popular', backButton: false),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: FutureBuilder<List<Popular>>(
@@ -40,6 +41,11 @@ class _MoviePopularScreenState extends State<MoviePopularScreen> {
                 ));
               default:
                 if (snapshot.hasData) {
+                  if (snapshot.data!.isEmpty) {
+                    return RefreshIndicator(
+                        onRefresh: Provider.of<PopularPeopleProvider>(context).onRefresh,
+                        child: const SizedBox());
+                  }
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: ((context, index) {

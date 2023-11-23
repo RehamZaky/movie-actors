@@ -10,7 +10,8 @@ class Popular {
   late String originalName;
   late double popularity;
   late String profilePath;
-  late List<KnownFor> knownFor;
+  List<KnownFor> knownFor = [];
+  String moviesTitle = '';
 
   Popular({
     required this.adult,
@@ -35,6 +36,8 @@ class Popular {
     originalName = json['original_name'];
     popularity = json['popularity'];
     profilePath = json['profile_path'];
+    json['known_for']
+        .forEach((movie) => knownFor.add(KnownFor.fromJson(movie)));
     // knownFor = json['known_for'];
   }
 }

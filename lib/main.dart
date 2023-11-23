@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assessment_task/popular/provider/popular_people.dart';
+import 'package:flutter_assessment_task/popular/provider/popular_provider.dart';
 import 'package:flutter_assessment_task/popular_details/provider/person_details.dart';
 import 'package:flutter_assessment_task/shared/di.dart';
 import 'package:flutter_assessment_task/shared/style/global_colors.dart';

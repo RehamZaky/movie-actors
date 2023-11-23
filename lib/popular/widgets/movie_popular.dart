@@ -50,11 +50,12 @@ class MoviePopularWidget extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  Text(
-                      onePopular.knownForDepartment == KnownForDepartment.ACTING
-                          ? 'Acting'
-                          : 'VISUAL EFFECTS',
-                      style: Theme.of(context).textTheme.bodyLarge),
+                  Wrap(
+                    children: [
+                     Text(onePopular.moviesTitle ?? '',
+                        style: Theme.of(context).textTheme.bodyLarge),
+                    ]
+                  ),
                 ],
               )
             ],

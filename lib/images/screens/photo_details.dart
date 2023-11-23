@@ -22,7 +22,9 @@ class PhotoDetailsScreen extends StatelessWidget {
             Provider.of<PopularDetailsProvider>(context).popularDetails!.name,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              openFile(url);
+            },
             icon: Lottie.asset('assets/lottie/download.json'),
           ),
         ],
@@ -33,7 +35,7 @@ class PhotoDetailsScreen extends StatelessWidget {
           child: Hero(
             tag: 'image$index',
             child: Image.network(
-              url, // .profileImages[index].filePath}',
+              url,
               width: double.tryParse(
                   imageProvider.selectedImage!.width.toString()),
               height: double.tryParse(

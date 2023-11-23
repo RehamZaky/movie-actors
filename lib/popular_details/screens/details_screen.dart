@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment_task/popular_details/provider/person_details.dart';
 import 'package:flutter_assessment_task/popular_details/widgets/custom_wrap.dart';
+import 'package:flutter_assessment_task/popular_details/widgets/images_grid.dart';
 import 'package:flutter_assessment_task/popular_details/widgets/popular_image.dart';
+import 'package:flutter_assessment_task/shared/style/constants.dart';
 import 'package:flutter_assessment_task/shared/style/global_colors.dart';
+import 'package:flutter_assessment_task/shared/widgets/custom_appbar.dart';
 import 'package:provider/provider.dart';
 
 class PersonDetailsScreen extends StatefulWidget {
@@ -14,15 +17,11 @@ class PersonDetailsScreen extends StatefulWidget {
 
 class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final headerTheme = Theme.of(context).textTheme.titleLarge!.copyWith(
         fontWeight: FontWeight.bold, color: GlobalColors.backgroundColor);
     return Scaffold(
+      appBar: const CustomAppBar(title: ''),
       body: Consumer<PopularDetailsProvider>(
         child: const SizedBox(),
         builder: (context, details, child) {
@@ -42,7 +41,7 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Image.network(
-                          'https://image.tmdb.org/t/p/w500${details.popularDetails!.profilePath}',
+                          '$baseImageUrl${details.popularDetails!.profilePath}',
                           height: 250,
                           width: MediaQuery.sizeOf(context).width / 3,
                           fit: BoxFit.cover,
@@ -56,7 +55,7 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Liam',
+                                details.popularDetails!.name,
                                 style: headerTheme,
                               ),
                               CustomRowInfo(
@@ -92,26 +91,11 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                         CustomRowInfo(
                             textVal: details.popularDetails!.placeOfBirth,
                             title: 'Place of Birth'),
-                        Text(
-                          'Known for',
-                          style: headerTheme,
-                        ),
                         const SizedBox(
                           height: 12,
                         ),
-                        SizedBox(
-                          // height: 300,
-                          child: GridView.builder(
-                            shrinkWrap: true,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3),
-                            scrollDirection: Axis.vertical,
-                            itemCount: 20,
-                            itemBuilder: ((context, index) {
-                              return PopularImageWidget(index: index);
-                            }),
-                          ),
+                        const SizedBox(
+                          child: ImagesGridView(),
                         ),
                       ],
                     ),

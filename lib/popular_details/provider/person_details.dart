@@ -16,8 +16,6 @@ class PopularDetailsProvider extends ChangeNotifier {
     var details = await detailsRepo.getPopularDetails(personId: personId!);
     if (details is PopularDetails) {
       popularDetails = details;
-    } else {
-      // TODO: show dialog or snackBar
     }
     notifyListeners();
   }

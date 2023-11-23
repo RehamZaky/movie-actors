@@ -29,11 +29,6 @@ class DioErrorDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              //TODO: Add error image
-              // SvgPicture.asset(
-              //   isServerError ? AppAssets.error : AppAssets.no_internet,
-              //   height: 90,
-              // ),
               const SizedBox(height: 24),
               Text(
                 title,

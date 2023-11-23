@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_assessment_task/images/data/models/profile_images.dart';
 import 'package:flutter_assessment_task/images/data/repos/images_repo.dart';
 import 'package:flutter_assessment_task/main.dart';
 import 'package:flutter_assessment_task/popular/data/repos/popular_repo.dart';
@@ -9,7 +7,6 @@ import 'package:flutter_assessment_task/popular_details/data/repos/details_repo.
 import 'package:flutter_assessment_task/shared/helpers/dio_error_dialog.dart';
 import 'package:flutter_assessment_task/shared/style/constants.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 GetIt di = GetIt.I;
 
@@ -58,17 +55,6 @@ class _AppInterceptor extends Interceptor {
   }
 }
 
-// TODO: Remove
-List _prettyDioLogger({bool enabled = false}) {
-  return [
-    if (kDebugMode && enabled)
-      PrettyDioLogger(
-        requestBody: true,
-        requestHeader: true,
-        responseBody: true,
-      ),
-  ];
-}
 
 Future<void> init() async {
   final dio = Dio(
@@ -80,7 +66,6 @@ Future<void> init() async {
         headers: apiHeaders),
   )..interceptors.addAll([
       _AppInterceptor(),
-      ..._prettyDioLogger(),
     ]);
 
   di.registerLazySingleton<Dio>(() => dio);

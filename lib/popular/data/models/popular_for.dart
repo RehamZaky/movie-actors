@@ -5,7 +5,7 @@ class KnownFor {
   late String backdropPath;
   late int id;
   String? title;
-  late OriginalLanguage originalLanguage;
+  late String originalLanguage;
   String? originalTitle;
   late String overview;
   late String posterPath;
@@ -19,7 +19,7 @@ class KnownFor {
   String? name;
   String? originalName;
   DateTime? firstAirDate;
-  List<String>? originCountry;
+  List<dynamic>? originCountry;
 
   KnownFor({
     required this.adult,
@@ -45,24 +45,28 @@ class KnownFor {
 
   KnownFor.fromJson(dynamic json) {
     adult = json['adult'];
-    backdropPath = json['backdropPath'];
+    backdropPath = json['backdrop_path'];
     title = json['title'];
     id = json['id'];
-    voteCount = json['voteCount'];
+    voteCount = json['vote_count'];
     name = json['name'];
-    originalName = json['originalName'];
+    originalName = json['original_name'];
     popularity = json['popularity'];
-    firstAirDate = json['firstAirDate'];
-    originCountry = json['originCountry'];
-    originalLanguage = json['originalLanguage'];
-    originalTitle = json['originalTitle'];
+    firstAirDate = json['first_air_date'] != null
+        ? DateTime.parse(json['first_air_date'])
+        : null;
+    //originCountry = json['origin_country'];
+    originalLanguage = json['original_language'];
+    originalTitle = json['original_title'];
     overview = json['overview'];
-    posterPath = json['posterPath'];
-    mediaType = json['mediaType'];
-    genreIds = json['genreIds'];
+    posterPath = json['poster_path'];
+    mediaType = json['media_type'] == 'TV' ? MediaType.TV : MediaType.MOVIE;
+    //  genreIds = json['genre_ids'];
     popularity = json['popularity'];
-    releaseDate = json['releaseDate'];
+    releaseDate = json['release_date'] != null
+        ? DateTime.parse(json['release_date'])
+        : json['release_date'];
     video = json['video'];
-    voteAverage = json['voteAverage'];
+    voteAverage = json['vote_average'];
   }
 }

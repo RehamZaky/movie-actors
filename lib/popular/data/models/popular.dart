@@ -2,15 +2,16 @@ import 'package:flutter_assessment_task/popular/data/models/popular_for.dart';
 import 'package:flutter_assessment_task/shared/data/models/department.dart';
 
 class Popular {
- late bool adult;
- late int gender;
- late int id;
- late KnownForDepartment knownForDepartment;
- late String name;
- late String originalName;
- late double popularity;
- late String profilePath;
- late List<KnownFor> knownFor;
+  late bool adult;
+  late int gender;
+  late int id;
+  late KnownForDepartment knownForDepartment;
+  late String name;
+  late String originalName;
+  late double popularity;
+  late String profilePath;
+  List<KnownFor> knownFor = [];
+  String moviesTitle = '';
 
   Popular({
     required this.adult,
@@ -28,11 +29,15 @@ class Popular {
     adult = json['adult'];
     gender = json['gender'];
     id = json['id'];
-    knownForDepartment = json['knownForDepartment'];
+    knownForDepartment = json['known_for_department'] == "Acting"
+        ? KnownForDepartment.ACTING
+        : KnownForDepartment.VISUAL_EFFECTS;
     name = json['name'];
-    originalName = json['originalName'];
+    originalName = json['original_name'];
     popularity = json['popularity'];
-    profilePath = json['profilePath'];
-    knownFor = json['knownFor'];
+    profilePath = json['profile_path'];
+    json['known_for']
+        .forEach((movie) => knownFor.add(KnownFor.fromJson(movie)));
+    // knownFor = json['known_for'];
   }
 }

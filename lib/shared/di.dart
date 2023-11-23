@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_assessment_task/images/data/models/profile_images.dart';
+import 'package:flutter_assessment_task/images/data/repos/images_repo.dart';
 import 'package:flutter_assessment_task/main.dart';
 import 'package:flutter_assessment_task/popular/data/repos/popular_repo.dart';
 import 'package:flutter_assessment_task/popular_details/data/repos/details_repo.dart';
@@ -85,4 +87,5 @@ Future<void> init() async {
 
   di.registerLazySingleton(() => PopularRepo());
   di.registerLazySingleton(() => PopularDetailsRepo());
+  di.registerLazySingleton(() => ImagesRepo());
 }

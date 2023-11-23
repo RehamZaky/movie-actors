@@ -1,6 +1,5 @@
-
-
 const String baseUrl = 'https://api.themoviedb.org/3/person/popular';
+const String baseImageUrl = 'https://image.tmdb.org/t/p/w500';
 
 const String apiKey = 'a94b7260527e30d53e71d6e1d4daced2';
 const String apiAccessToken =

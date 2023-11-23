@@ -3,6 +3,7 @@ import 'package:flutter_assessment_task/popular/data/models/popular.dart';
 import 'package:flutter_assessment_task/popular_details/provider/person_details.dart';
 import 'package:flutter_assessment_task/popular_details/screens/details_screen.dart';
 import 'package:flutter_assessment_task/shared/data/models/department.dart';
+import 'package:flutter_assessment_task/shared/style/constants.dart';
 import 'package:provider/provider.dart';
 
 class MoviePopularWidget extends StatelessWidget {
@@ -35,28 +36,31 @@ class MoviePopularWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.network(
-                  'https://image.tmdb.org/t/p/w500${onePopular.profilePath}',
+              Image.network('$baseImageUrl${onePopular.profilePath}',
                   height: 100),
               const SizedBox(
                 width: 16,
               ),
-              Column(
-                children: [
-                  Text(
-                    onePopular.name,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Wrap(
-                    children: [
-                     Text(onePopular.moviesTitle ?? '',
-                        style: Theme.of(context).textTheme.bodyLarge),
-                    ]
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      onePopular.name,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Wrap(children: [
+                      Text(
+                        onePopular.moviesTitle ?? '',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        softWrap: true,
+                        maxLines: 3,
+                      ),
+                    ]),
+                  ],
+                ),
               )
             ],
           ),
@@ -65,15 +69,3 @@ class MoviePopularWidget extends StatelessWidget {
     );
   }
 }
-
-
-// //ListTile(
-//           title: Text(onePopular.name),
-//           subtitle: Text(
-//               onePopular.knownForDepartment == KnownForDepartment.ACTING
-//                   ? 'Acting'
-//                   : 'VISUAL EFFECTS'),
-//           leading: Image.network(
-//               'https://image.tmdb.org/t/p/w500${onePopular.profilePath}',
-//               height: 170),
-//         )

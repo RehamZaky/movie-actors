@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment_task/images/provider/images_provider.dart';
 import 'package:flutter_assessment_task/popular/provider/popular_provider.dart';
 import 'package:flutter_assessment_task/popular_details/provider/person_details.dart';
 import 'package:flutter_assessment_task/shared/di.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => PopularDetailsProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ProfileImagesProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

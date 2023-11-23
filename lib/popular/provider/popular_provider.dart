@@ -20,7 +20,8 @@ class PopularPeopleProvider extends ChangeNotifier {
           if (element.moviesTitle.isEmpty) {
             element.moviesTitle = movie.title ?? movie.name!;
           } else {
-            element.moviesTitle += movie.title != null ? ', ${movie.title}' : ', ${movie.name}';
+            element.moviesTitle +=
+                movie.title != null ? ', ${movie.title}' : ', ${movie.name}';
           }
         }
       }
@@ -59,5 +60,11 @@ class PopularPeopleProvider extends ChangeNotifier {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    moviesTitle = [];
+    super.dispose();
   }
 }

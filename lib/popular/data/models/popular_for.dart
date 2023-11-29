@@ -2,7 +2,7 @@ import 'package:flutter_assessment_task/shared/data/models/department.dart';
 
 class KnownFor {
   late bool adult;
-  late String backdropPath;
+  String? backdropPath;
   late int id;
   String? title;
   late String originalLanguage;
@@ -23,7 +23,7 @@ class KnownFor {
 
   KnownFor({
     required this.adult,
-    required this.backdropPath,
+    this.backdropPath,
     required this.id,
     this.title,
     required this.originalLanguage,
@@ -45,7 +45,7 @@ class KnownFor {
 
   KnownFor.fromJson(dynamic json) {
     adult = json['adult'];
-    backdropPath = json['backdrop_path'];
+    backdropPath = json['backdrop_path'] ?? '';
     title = json['title'];
     id = json['id'];
     voteCount = json['vote_count'];

@@ -9,7 +9,7 @@ class Popular {
   late String name;
   late String originalName;
   late double popularity;
-  late String profilePath;
+  String? profilePath;
   List<KnownFor> knownFor = [];
   String moviesTitle = '';
 
@@ -21,7 +21,7 @@ class Popular {
     required this.name,
     required this.originalName,
     required this.popularity,
-    required this.profilePath,
+    this.profilePath,
     required this.knownFor,
   });
 

@@ -36,8 +36,11 @@ class MoviePopularWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.network('$baseImageUrl${onePopular.profilePath}',
-                  height: 100),
+              if (onePopular.profilePath!.isNotEmpty)
+                Image.network('$baseImageUrl${onePopular.profilePath}',
+                    height: 100)
+              else
+                const SizedBox(height: 100),
               const SizedBox(
                 width: 16,
               ),

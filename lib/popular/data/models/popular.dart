@@ -35,7 +35,7 @@ class Popular {
     name = json['name'];
     originalName = json['original_name'];
     popularity = json['popularity'];
-    profilePath = json['profile_path'];
+    profilePath = json['profile_path'] = '';
     json['known_for']
         .forEach((movie) => knownFor.add(KnownFor.fromJson(movie)));
     // knownFor = json['known_for'];
